@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zadanie OneBid
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid shadow p-5 bg-warning bg-gradient text-center">
+    <h1 class="display-3 fw-bold text-danger">
+      Zadanie
+      <img class="main-title-logo" src="{{ asset('images/logo335x80.png') }}" alt="OneBid">
+    </h1>
+    <div class="fs-5">Porównywarka kursów walut</div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row gx-5">
+      <div class="col-lg-3 mb-3">
+        <h3 class="text-primary">Formularz</h3>
+        <p>Wprowadź datę historyczną</p>
+        {{ form_start(form) }}
+        <div class="input-group shadow-sm">
+          {{ form_widget(form.date) }}
+          {{ form_widget(form.show) }}
+        </div>
+        {{ form_errors(form.date) }}
+        {{ form_end(form) }}
+      </div>
+      <div class="col">
+        <h3 class="text-primary">Tabela</h3>
+        <div class="container-fluid py-2 px-3 border rounded shadow">
+          {% if table is not null %}
+            <table class="table currency-rates-list">
+              <thead>
+                <tr>
+                  <th scope="col">Waluta</th>
+                  <th scope="col">Kurs z dziś</th>
+                  <th scope="col">Kurs ze wskazanej daty</th>
+                  <th scope="col">Zmiana procentowa</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in table %}
+                  <tr>
+                    <th scope="row">{{ row.currency }}</th>
+                    <td>{{ row.today|number_format(6) }}</td>
+                    <td>{{ row.indicated_day|number_format(6) }}</td>
+                    <td>{{ row.change|percentage_change }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p>Brak wyników</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

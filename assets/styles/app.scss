@@ -1,0 +1,19 @@
+// customize some Bootstrap variables
+$primary: #7117a8;
+$secondary: #2e5491;
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  background-color: #ffffff;
+}
+
+img.main-title-logo {
+  height: 1.2em;
+  vertical-align: -25%;
+}
+
+table.currency-rates-list tr > :not(:first-child) {
+  text-align: right;
+}

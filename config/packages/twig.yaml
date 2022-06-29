@@ -1,5 +1,9 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_5_layout.html.twig']
+    number_format:
+        decimal_point: ','
+        thousands_separator: ' ' 
 
 when@test:
     twig:
